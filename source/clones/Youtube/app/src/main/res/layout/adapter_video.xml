@@ -1,0 +1,99 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+        <variable
+            name="viewmodel"
+            type="com.example.youtubeclone.AdapterVideo" />
+    </data>
+
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="10dp">
+
+        <ImageView
+            android:id="@+id/imageView"
+            android:layout_width="match_parent"
+            android:layout_height="231dp"
+            android:background="#F4F2F2"
+            android:scaleType="centerCrop"
+            app:srcCompat="@drawable/padrao" />
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="122dp"
+            app:layout_constraintBottom_toBottomOf="@+id/textDesc"
+            app:layout_constraintTop_toBottomOf="@+id/textDesc">
+
+            <ImageView
+                android:id="@+id/imageViewUser"
+                android:layout_width="36dp"
+                android:layout_height="33dp"
+                android:layout_marginTop="16dp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:srcCompat="@drawable/user" />
+
+            <TextView
+                android:id="@+id/textTitulo"
+                android:layout_width="306dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="8dp"
+                android:layout_marginTop="16dp"
+                android:text="@{viewmodel.videoProp.snippet.title}"
+                android:textStyle="bold"
+                app:layout_constraintEnd_toEndOf="@+id/textDesc"
+                app:layout_constraintStart_toEndOf="@+id/imageViewUser"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <TextView
+                android:id="@+id/textDesc"
+                android:layout_width="305dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="8dp"
+                android:layout_marginTop="8dp"
+                android:text="@{viewmodel.videoProp.snippet.description}"
+                android:textColor="#9C9B9B"
+                android:textSize="11sp"
+                app:layout_constraintEnd_toEndOf="@+id/textInfo"
+                app:layout_constraintStart_toEndOf="@+id/imageViewUser"
+                app:layout_constraintTop_toBottomOf="@+id/textTitulo" />
+
+            <TextView
+                android:id="@+id/textInfo"
+                android:layout_width="303dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="8dp"
+                android:layout_marginTop="8dp"
+                android:text="@{viewmodel.videoProp.snippet.publishedAt.toString()}"
+                android:textColor="#CAC9C9"
+                android:textSize="11sp"
+                app:layout_constraintStart_toEndOf="@+id/imageViewUser"
+                app:layout_constraintTop_toBottomOf="@+id/textDesc" />
+
+            <ImageButton
+                android:id="@+id/bottomSheet"
+                android:layout_width="13dp"
+                android:layout_height="25dp"
+                android:layout_marginStart="8dp"
+                android:layout_marginTop="16dp"
+                android:layout_marginEnd="8dp"
+                android:background="@color/transparent"
+                android:scaleType="centerInside"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@+id/textTitulo"
+                app:layout_constraintTop_toTopOf="parent"
+                app:srcCompat="@drawable/menu" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+    </LinearLayout>
+
+</layout>
+
+

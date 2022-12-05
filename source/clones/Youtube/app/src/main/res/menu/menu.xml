@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:tools="http://schemas.android.com/tools"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item
+        android:id="@+id/menu_media"
+        android:title="@string/menu_title_shared"
+        android:icon="@drawable/stream"
+        app:showAsAction="always"/>
+  <!--  <item
+        android:id="@+id/menu_notificacao"
+        android:title="@string/menu_title_notificar"
+        android:icon="@drawable/notificacao"
+        app:showAsAction="always"/>
+    <item
+        android:id="@+id/menu_pesquisar"
+        android:title="@string/menu_title_pesquisar"
+        android:icon="@drawable/lupa"
+        app:showAsAction="always"/>
+    <item
+        android:id="@+id/menu_user"
+        android:title="@string/menu_title_perfil"
+        android:icon="@drawable/user"
+        app:showAsAction="always"/>-->
+</menu>

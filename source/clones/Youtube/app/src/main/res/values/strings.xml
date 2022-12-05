@@ -1,3 +1,16 @@
 <resources>
-    <string name="app_name">Youtube Clone</string>
+    <string name="app_name">Youtube</string>
+    <string name="description_logo">Logomarca youtube</string>
+    <string name="description_search">Botão pesquisar videos</string>
+    <string name="description_notification">Icone de notificações</string>
+    <string name="description_toolbar">Barra de ferramentas</string>
+    <string name="description_layout_toolbar">Layout com barra de ferramentas</string>
+    <string name="description_user">Icone perfil do usuário</string>
+    <string name="description_sharedStream">Icone compartilhar stream, com equipamentos compativel. Ex: Smart TV</string>
+    <string name="menu_title_shared">Espelhar</string>
+    <string name="menu_title_notificar">Notificação</string>
+    <string name="menu_title_perfil">Perfil</string>
+    <string name="menu_title_pesquisar">Pesquisar</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
 </resources>
