@@ -11,6 +11,10 @@
     <string name="menu_title_notificar">Notificação</string>
     <string name="menu_title_perfil">Perfil</string>
     <string name="menu_title_pesquisar">Pesquisar</string>
-    <!-- TODO: Remove or change this placeholder text -->
-    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="bootomsheet_save">Save to Watch later</string>
+    <string name="bootomsheet_save_playlist">Save to playlist</string>
+    <string name="bootomsheet_shared">Shared</string>
+    <string name="bootomsheet_not_interested">Not interested</string>
+    <string name="bootomsheet_dont_recommend_channel">Don´t recommend channel</string>
+    <string name="bootomsheet_report">Report</string>
 </resources>

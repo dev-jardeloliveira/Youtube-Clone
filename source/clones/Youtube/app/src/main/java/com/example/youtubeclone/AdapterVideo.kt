@@ -1,31 +1,33 @@
 package com.example.youtubeclone
 
-import android.content.Context
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageButton
 import android.widget.ImageView
 import android.widget.TextView
-import android.widget.Toast
 import androidx.recyclerview.widget.RecyclerView
 import androidx.recyclerview.widget.RecyclerView.Adapter
-import com.google.android.material.bottomsheet.BottomSheetDialog
 import com.squareup.picasso.Picasso
 
-open class AdapterVideo(private val videos:ArrayList<Item>, val context:Context): Adapter<AdapterVideo.MyViewHolder>() {
+open class AdapterVideo(private val videos:ArrayList<Item>): Adapter<AdapterVideo.MyViewHolder>() {
 
-    var onItemClick : ((Item) -> Unit)? = null
+    private lateinit var mListener:onItemClickListener
     lateinit var videoProp:Item
-    var mainActivity: MainActivity = MainActivity()
 
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): AdapterVideo.MyViewHolder {
-        val view = LayoutInflater.from(context)
-            .inflate(R.layout.adapter_video, parent,false)
-        return MyViewHolder(view)
+    interface onItemClickListener{
+        fun onItemClick(position:Int)
+    }
+    fun setOnItemClickListerner(listener:onItemClickListener){
+        mListener=listener
     }
 
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): AdapterVideo.MyViewHolder {
+        val view = LayoutInflater.from(parent.context)
+            .inflate(R.layout.adapter_video, parent,false)
+
+        return MyViewHolder(view, mListener)
+    }
 
     override fun getItemCount(): Int {
         return videos.size
@@ -47,13 +49,6 @@ open class AdapterVideo(private val videos:ArrayList<Item>, val context:Context)
         }
         holder.imageUser.setImageResource(R.drawable.user)
         holder.imageMenu.setImageResource(R.drawable.menu)
-        holder.imageMenu.setOnClickListener{
-            onItemClick?.invoke(videoProp)
-
-            Log.d("Clique", "Objeto clicado adpter:" + videoProp.snippet.title)
-        }
-
-
 
         holder.info.apply {
                 text = videoProp.snippet.publishedAt.toString()
@@ -62,7 +57,7 @@ open class AdapterVideo(private val videos:ArrayList<Item>, val context:Context)
 
     }
 
-    class MyViewHolder(itemView: View) :RecyclerView.ViewHolder(itemView){
+    class MyViewHolder(itemView: View, listener: onItemClickListener) :RecyclerView.ViewHolder(itemView){
 
        var image = itemView.findViewById<ImageView>(R.id.imageView)
         var imageUser = itemView.findViewById<ImageView>(R.id.imageViewUser)
@@ -71,6 +66,16 @@ open class AdapterVideo(private val videos:ArrayList<Item>, val context:Context)
         val desc = itemView.findViewById<TextView>(R.id.textDesc)
         val info = itemView.findViewById<TextView>(R.id.textInfo)
 
+        init {
+
+            itemView.setOnClickListener {
+               // listener.onItemClick(adapterPosition)
+            }
+            imageMenu.setOnClickListener {
+                listener.onItemClick(adapterPosition)
+            }
+
+        }
 
     }
 
