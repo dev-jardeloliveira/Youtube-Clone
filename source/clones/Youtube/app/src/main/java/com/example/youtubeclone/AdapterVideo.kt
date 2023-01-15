@@ -12,21 +12,28 @@ import com.squareup.picasso.Picasso
 
 open class AdapterVideo(private val videos:ArrayList<Item>): Adapter<AdapterVideo.MyViewHolder>() {
 
-    private lateinit var mListener:onItemClickListener
     lateinit var videoProp:Item
-
+    private lateinit var mListener:onItemClickListener
+    private lateinit var mListener2:onItemClickListenerPosition
     interface onItemClickListener{
-        fun onItemClick(position:Int)
+        fun onItemClick(idVideo:String, title:String, description:String, public:String )
+    }
+    interface onItemClickListenerPosition{
+        fun onItemClickPosition(position:Int)
     }
     fun setOnItemClickListerner(listener:onItemClickListener){
         mListener=listener
+
+    }
+    fun setOnItemClickListernerPosition(listener2:onItemClickListenerPosition){
+        mListener2=listener2
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): AdapterVideo.MyViewHolder {
         val view = LayoutInflater.from(parent.context)
             .inflate(R.layout.adapter_video, parent,false)
 
-        return MyViewHolder(view, mListener)
+        return MyViewHolder(view, mListener, mListener2)
     }
 
     override fun getItemCount(): Int {
@@ -35,7 +42,7 @@ open class AdapterVideo(private val videos:ArrayList<Item>): Adapter<AdapterVide
 
     override fun onBindViewHolder(holder: MyViewHolder, position: Int) {
         videoProp = videos[position]
-
+        holder.videoProp = videos[position]
        Picasso.get().load(videoProp.snippet.thumbnails.high.url)
             .resize(1600,1080)
             .centerInside()
@@ -57,8 +64,9 @@ open class AdapterVideo(private val videos:ArrayList<Item>): Adapter<AdapterVide
 
     }
 
-    class MyViewHolder(itemView: View, listener: onItemClickListener) :RecyclerView.ViewHolder(itemView){
+    class MyViewHolder(itemView: View, mlistener: onItemClickListener, mlistener2: onItemClickListenerPosition) :RecyclerView.ViewHolder(itemView){
 
+        lateinit var videoProp:Item
        var image = itemView.findViewById<ImageView>(R.id.imageView)
         var imageUser = itemView.findViewById<ImageView>(R.id.imageViewUser)
         var imageMenu = itemView.findViewById<ImageButton>(R.id.bottomSheet)
@@ -68,11 +76,11 @@ open class AdapterVideo(private val videos:ArrayList<Item>): Adapter<AdapterVide
 
         init {
 
-            itemView.setOnClickListener {
-               // listener.onItemClick(adapterPosition)
+            image.setOnClickListener {
+                mlistener.onItemClick(videoProp.id.videoId, videoProp.snippet.title, videoProp.snippet.description, videoProp.snippet.publishedAt.toString() )
             }
             imageMenu.setOnClickListener {
-                listener.onItemClick(adapterPosition)
+                mlistener2.onItemClickPosition(adapterPosition)
             }
 
         }

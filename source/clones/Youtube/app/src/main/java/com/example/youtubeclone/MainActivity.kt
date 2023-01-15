@@ -1,5 +1,6 @@
 package com.example.youtubeclone
 
+import android.content.Intent
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.widget.Toolbar
@@ -105,9 +106,20 @@ open class MainActivity : YouTubeBaseActivity(){
                     adapterVideo = AdapterVideo(lista)
                     recyclerView.adapter = adapterVideo
 
-                    adapterVideo.setOnItemClickListerner(object : AdapterVideo.onItemClickListener{
-                        override fun onItemClick(position: Int) {
+                    adapterVideo.setOnItemClickListernerPosition(object : AdapterVideo.onItemClickListenerPosition {
+                        override fun onItemClickPosition(position: Int) {
                             BottomSheet()
+                        }
+
+                    })
+                    adapterVideo.setOnItemClickListerner(object : AdapterVideo.onItemClickListener{
+                        override fun onItemClick(idVideo: String,title:String, description:String, public:String) {
+                            val intent = Intent(this@MainActivity, PlayerActivity::class.java)
+                            intent.putExtra("idVideo", idVideo )
+                            intent.putExtra("title", title )
+                            intent.putExtra("description", description )
+                            intent.putExtra("public", public )
+                            startActivity(intent)
                         }
 
                     })
